@@ -1,7 +1,7 @@
 const express=require("express")
 const app=express();
-
 const DBconnect =require("./db/DB_Connect")
+require('dotenv').config()
 const PORT = 5000;
 
 DBconnect();

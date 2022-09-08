@@ -7,13 +7,27 @@ const Person=require("../models/person")
 personRouter.post("/add",async(req,res)=>{
 try{
     const newPerson=new Person(req.body);
-    let result= await newPerson.save();
+    const result= await newPerson.save();
     res.send({result:result,msg:"person added"});
 }
 catch(error){
 console.log(error)
 }
 });
+
+
+//create many
+//method create
+
+personRouter.post('/addmany',(req,res)=>{
+Person.insertMany(req.body).then((person)=>{
+    res.status(201).send(person);
+}).catch
+    ((error)=>{res.status(400).send(error);
+    })
+})
+
+
 
 //get all person
 //methode :get
@@ -40,7 +54,6 @@ personRouter.get("/:id",async(req,res)=>{
         console.log(error);
     }
 })
-
 
 //update person
 //methode :put
